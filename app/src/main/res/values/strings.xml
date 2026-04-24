@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Blue Delivery</string>
+    <string name="search_hint">Search restaurants, food, groceries...</string>
+    <string name="categories">Categories</string>
+    <string name="category_food">🍔 Food</string>
+    <string name="category_grocery">🛒 Grocery</string>
+    <string name="category_pharmacy">💊 Pharmacy</string>
+    <string name="category_package">📦 Package</string>
+    <string name="popular_near_you">🔥 Popular Near You</string>
+    <string name="featured_deals">✨ Featured Deals</string>
+    <string name="recommended_for_you">👍 Recommended For You</string>
+    <string name="special_burger">Special Burger Deal!</string>
+    <string name="featured_subtitle_text">50% OFF + Free Delivery</string>
+    <string name="restaurant_image_description">Restaurant featured image</string>
+    <string name="featured_deal_description">Featured deal image</string>
+</resources>
