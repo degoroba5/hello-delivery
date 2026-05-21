@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark Mode Color Palette (Material 3 Dark) -->
+    <color name="primary">#D0BCFF</color>
+    <color name="primary_variant">#381E72</color>
+    <color name="secondary">#CCC2DC</color>
+    <color name="background">#1C1B1F</color>
+    <color name="surface">#1C1B1F</color>
+    <color name="error">#F2B8B5</color>
+    <color name="on_primary">#381E72</color>
+    <color name="on_secondary">#332D41</color>
+    <color name="on_background">#E6E1E5</color>
+    <color name="on_surface">#E6E1E5</color>
+    <color name="on_error">#601410</color>
+
+    <color name="blue_primary">#D0BCFF</color>
+    <color name="blue_accent">#D0BCFF</color>
+    <color name="blue_light">#4A4458</color>
+
+    <color name="light_gray">#49454F</color>
+    <color name="white">#FFFFFF</color> <!-- Keep white as white -->
+    <color name="white_80">#B3FFFFFF</color>
+    <color name="black">#000000</color> <!-- Keep black as black -->
+    <color name="gray">#938F99</color>
+    <color name="dark_gray">#CAC4D0</color>
+
+    <color name="orange_accent">#FFB866</color>
+    <color name="green_success">#B4E3B4</color>
+    <color name="divider">#49454F</color>
+</resources>

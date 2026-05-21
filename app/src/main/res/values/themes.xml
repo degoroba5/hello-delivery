@@ -2,8 +2,45 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.HelloDelivery" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="colorPrimaryContainer">@color/blue_light</item>
+        <item name="colorOnPrimaryContainer">@color/blue_primary</item>
+
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorOnSecondary">@color/on_secondary</item>
+
+        <item name="android:windowBackground">@color/background</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/on_surface</item>
+
+        <item name="android:statusBarColor">@color/primary</item>
     </style>
 
     <style name="Theme.HelloDelivery" parent="Base.Theme.HelloDelivery" />
+
+    <style name="Theme.HelloDelivery.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- Custom Shape Appearances for Enterprise UI -->
+    <style name="ShapeAppearanceOverlay.App.Card.TopRounded" parent="">
+        <item name="cornerSizeTopLeft">24dp</item>
+        <item name="cornerSizeTopRight">24dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.Card.Medium" parent="">
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="indicator_selector" parent="">
+        <item name="android:background">@drawable/indicator_dot</item>
+    </style>
 </resources>

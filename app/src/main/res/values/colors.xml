@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Modern Color Palette -->
+    <color name="primary">#6200EE</color>
+    <color name="primary_variant">#3700B3</color>
+    <color name="secondary">#03DAC6</color>
+    <color name="background">#F8F9FA</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="error">#B00020</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="on_secondary">#000000</color>
+    <color name="on_background">#202124</color>
+    <color name="on_surface">#202124</color>
+    <color name="on_error">#FFFFFF</color>
+
     <color name="blue_primary">#2196F3</color>
-    <color name="blue_accent">#1976D2</color>
-    <color name="blue_light">#64B5F6</color>
-    <color name="light_gray">#F5F5F5</color>
+    <color name="blue_accent">#00B0FF</color>
+    <color name="blue_light">#E3F2FD</color>
+
+    <color name="light_gray">#F1F3F4</color>
     <color name="white">#FFFFFF</color>
     <color name="white_80">#CCFFFFFF</color>
-    <color name="black">#000000</color>
-    <color name="gray">#9E9E9E</color>
-    <color name="dark_gray">#757575</color>
+    <color name="black">#202124</color>
+    <color name="gray">#5F6368</color>
+    <color name="dark_gray">#3C4043</color>
+
+    <color name="orange_accent">#FF6D00</color>
+    <color name="green_success">#1E8E3E</color>
+    <color name="divider">#DADCE0</color>
 </resources>

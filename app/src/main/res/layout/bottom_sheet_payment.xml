@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/bottom_sheet_background">
+
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:background="#D1D1D1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delivery Address"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/on_surface"
+        android:layout_marginBottom="8dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/address_input_layout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:startIconDrawable="@android:drawable/ic_menu_myplaces">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/address_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Street, Building, Apartment No."
+            android:inputType="textPostalAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose Payment Method"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/on_surface"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/payment_total_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/primary"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Credit Card Option -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_pay_card"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginBottom="12dp"
+        android:text="Credit or Debit Card"
+        android:textColor="@color/on_surface"
+        android:textAllCaps="false"
+        android:gravity="start|center_vertical"
+        android:paddingStart="16dp"
+        app:icon="@android:drawable/ic_menu_edit"
+        app:iconGravity="textStart"
+        app:iconPadding="16dp"
+        app:iconTint="@color/primary"
+        app:strokeColor="@color/divider"
+        app:cornerRadius="12dp" />
+
+    <!-- PayPal Option -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_pay_paypal"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginBottom="12dp"
+        android:text="PayPal"
+        android:textColor="@color/on_surface"
+        android:textAllCaps="false"
+        android:gravity="start|center_vertical"
+        android:paddingStart="16dp"
+        app:icon="@android:drawable/ic_menu_send"
+        app:iconGravity="textStart"
+        app:iconPadding="16dp"
+        app:iconTint="#003087"
+        app:strokeColor="@color/divider"
+        app:cornerRadius="12dp" />
+
+    <!-- Google Pay -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_pay_google"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginBottom="12dp"
+        android:text="Google Pay"
+        android:textColor="@color/on_surface"
+        android:textAllCaps="false"
+        android:gravity="start|center_vertical"
+        android:paddingStart="16dp"
+        app:icon="@android:drawable/ic_menu_info_details"
+        app:iconGravity="textStart"
+        app:iconPadding="16dp"
+        app:iconTint="@color/on_surface"
+        app:strokeColor="@color/divider"
+        app:cornerRadius="12dp" />
+
+    <!-- Cash on Delivery -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_pay_cash"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:text="Cash on Delivery"
+        android:textColor="@color/on_surface"
+        android:textAllCaps="false"
+        android:gravity="start|center_vertical"
+        android:paddingStart="16dp"
+        app:icon="@android:drawable/ic_menu_myplaces"
+        app:iconGravity="textStart"
+        app:iconPadding="16dp"
+        app:iconTint="#4CAF50"
+        app:strokeColor="@color/divider"
+        app:cornerRadius="12dp" />
+
+</LinearLayout>

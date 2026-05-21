@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="screen_padding">24dp</dimen>
+    <dimen name="card_margin">16dp</dimen>
+    <dimen name="item_spacing">12dp</dimen>
+    <dimen name="text_size_h1">28sp</dimen>
+    <dimen name="text_size_h2">24sp</dimen>
+    <dimen name="text_size_h3">20sp</dimen>
+    <dimen name="text_size_body">16sp</dimen>
+    <dimen name="text_size_caption">12sp</dimen>
+    <dimen name="button_height">56dp</dimen>
+    <dimen name="card_corner_radius">16dp</dimen>
+</resources>
