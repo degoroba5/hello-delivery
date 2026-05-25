@@ -1,5 +1,6 @@
 package com.example.hellodelivery.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -11,6 +12,7 @@ import com.example.hellodelivery.database.CartEntity;
 import com.example.hellodelivery.database.FavoriteEntity;
 import com.example.hellodelivery.databinding.ActivityProductDetailsBinding;
 import com.example.hellodelivery.models.Product;
+import com.example.hellodelivery.utils.SessionManager;
 import com.example.hellodelivery.viewmodels.CartViewModel;
 import com.example.hellodelivery.viewmodels.FavoriteViewModel;
 import com.example.hellodelivery.viewmodels.ProductViewModel;
@@ -22,6 +24,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private ProductViewModel productViewModel;
     private CartViewModel cartViewModel;
     private FavoriteViewModel favoriteViewModel;
+    private SessionManager sessionManager;
     
     private String productId;
     private int quantity = 1;
@@ -43,6 +46,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
         cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
         favoriteViewModel = new ViewModelProvider(this).get(FavoriteViewModel.class);
+        sessionManager = new SessionManager(this);
 
         setupToolbar();
         setupListeners();
@@ -72,9 +76,24 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
         });
 
+        // Guest users CAN add to cart
         binding.btnAddToCartLarge.setOnClickListener(v -> addToCart());
         
-        binding.btnFavorite.setOnClickListener(v -> toggleFavorite());
+        // Favorites still require login
+        binding.btnFavorite.setOnClickListener(v -> {
+            if (checkLogin("save favorites")) {
+                toggleFavorite();
+            }
+        });
+    }
+
+    private boolean checkLogin(String action) {
+        if (!sessionManager.isLoggedIn()) {
+            Toast.makeText(this, "Please login to " + action, Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, LoginActivity.class));
+            return false;
+        }
+        return true;
     }
 
     private void updateQuantityText() {
@@ -102,7 +121,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
         if (product.getDiscountPrice() > 0) {
             binding.productOriginalPriceDetail.setVisibility(View.VISIBLE);
             binding.productOriginalPriceDetail.setText(String.format(Locale.getDefault(), "$%.2f", product.getPrice()));
-            // Add strike-through in a real app via Span or Paint flags
         } else {
             binding.productOriginalPriceDetail.setVisibility(View.GONE);
         }
@@ -114,6 +132,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
     }
 
     private void checkIfFavorite() {
+        if (!sessionManager.isLoggedIn()) return;
+
         favoriteViewModel.isFavorite(productId, isFav -> {
             isFavorite = isFav;
             runOnUiThread(() -> updateFavoriteUI());

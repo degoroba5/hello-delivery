@@ -39,9 +39,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public void onBindViewHolder(@NonNull NotificationViewHolder holder, int position) {
         Notification notification = notificationList.get(position);
-        holder.binding.tvNotificationTitle.setText(notification.getTitle());
-        holder.binding.tvNotificationMessage.setText(notification.getMessage());
-        holder.binding.tvNotificationTime.setText(notification.getTime());
+        holder.binding.notificationTitle.setText(notification.getTitle());
+        holder.binding.notificationBody.setText(notification.getMessage());
+        holder.binding.notificationTime.setText(notification.getTime());
 
         if (notification.isRead()) {
             holder.binding.getRoot().setCardBackgroundColor(Color.WHITE);

@@ -33,30 +33,57 @@ public class ProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         sessionManager = new SessionManager(requireContext());
 
-        User user = sessionManager.getUserDetails();
-        if (user != null) {
-            binding.profileName.setText(user.getName());
-            binding.profileEmail.setText(user.getEmail());
+        updateUI();
+    }
+
+    private void updateUI() {
+        if (sessionManager.isLoggedIn()) {
+            User user = sessionManager.getUserDetails();
+            if (user != null) {
+                binding.profileName.setText(user.getName());
+                binding.profileEmail.setText(user.getEmail());
+            }
+            binding.btnLogout.setText("Logout");
+            binding.btnLogout.setOnClickListener(v -> {
+                sessionManager.logout();
+                updateUI();
+            });
+            
+            binding.btnEditProfile.setEnabled(true);
+            binding.btnSavedAddresses.setEnabled(true);
+            binding.btnSettings.setEnabled(true);
+        } else {
+            binding.profileName.setText("Guest User");
+            binding.profileEmail.setText("Login to access all features");
+            binding.btnLogout.setText("Login / Register");
+            binding.btnLogout.setOnClickListener(v -> {
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+            });
+            
+            binding.btnEditProfile.setEnabled(false);
+            binding.btnSavedAddresses.setEnabled(false);
+            binding.btnSettings.setEnabled(false);
         }
 
         binding.btnEditProfile.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), EditProfileActivity.class));
+            if (checkLogin()) startActivity(new Intent(getActivity(), EditProfileActivity.class));
         });
 
         binding.btnSavedAddresses.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), SavedAddressesActivity.class));
+            if (checkLogin()) startActivity(new Intent(getActivity(), SavedAddressesActivity.class));
         });
 
         binding.btnSettings.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), SettingsActivity.class));
+            if (checkLogin()) startActivity(new Intent(getActivity(), SettingsActivity.class));
         });
+    }
 
-        binding.btnLogout.setOnClickListener(v -> {
-            sessionManager.logout();
-            Intent intent = new Intent(getActivity(), LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        });
+    private boolean checkLogin() {
+        if (!sessionManager.isLoggedIn()) {
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+            return false;
+        }
+        return true;
     }
 
     @Override

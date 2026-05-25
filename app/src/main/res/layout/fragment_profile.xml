@@ -68,7 +68,7 @@
                 android:layout_height="56dp"
                 android:gravity="start|center_vertical"
                 android:text="Edit Profile"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 app:icon="@android:drawable/ic_menu_edit"
                 app:iconTint="@color/primary" />
 
@@ -79,7 +79,7 @@
                 android:layout_height="56dp"
                 android:gravity="start|center_vertical"
                 android:text="Saved Addresses"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 app:icon="@android:drawable/ic_menu_mylocation"
                 app:iconTint="@color/primary" />
 
@@ -90,7 +90,7 @@
                 android:layout_height="56dp"
                 android:gravity="start|center_vertical"
                 android:text="Settings"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 app:icon="@android:drawable/ic_menu_preferences"
                 app:iconTint="@color/primary" />
 

@@ -3,8 +3,6 @@ package com.example.hellodelivery.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.hellodelivery.database.AppDatabase;
@@ -30,33 +28,26 @@ public class CheckoutActivity extends AppCompatActivity {
     private double tax = 0;
     private double total = 0;
 
-    private final ActivityResultLauncher<Intent> addressPickerLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                    String address = result.getData().getStringExtra("address");
-                    binding.tvDeliveryAddress.setText(address);
-                }
-            }
-    );
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityCheckoutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
         sessionManager = new SessionManager(this);
+        if (!sessionManager.isLoggedIn()) {
+            Toast.makeText(this, "Please login to continue", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            return;
+        }
+
+        orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
 
         setupToolbar();
         calculateSummary();
 
-        binding.addressCard.setOnClickListener(v -> {
-            Intent intent = new Intent(this, AddressPickerActivity.class);
-            addressPickerLauncher.launch(intent);
-        });
-
+        // Removed address selection logic
         binding.btnPlaceOrder.setOnClickListener(v -> placeOrder());
     }
 
@@ -88,17 +79,12 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     private void placeOrder() {
-        String address = binding.tvDeliveryAddress.getText().toString();
-        if (address.equals("Select delivery address") || address.isEmpty()) {
-            Toast.makeText(this, "Please select a delivery address", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
+        // No longer checking for an address
         String paymentMethod = binding.radioCod.isChecked() ? "COD" : "Online";
         String token = sessionManager.getToken();
 
         HashMap<String, Object> orderData = new HashMap<>();
-        orderData.put("address", address);
+        orderData.put("address", "N/A"); // Default value
         orderData.put("paymentMethod", paymentMethod);
         orderData.put("totalAmount", total);
         

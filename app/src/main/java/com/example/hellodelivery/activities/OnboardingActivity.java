@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
+import com.example.hellodelivery.MainActivity;
 import com.example.hellodelivery.adapters.OnboardingAdapter;
 import com.example.hellodelivery.databinding.ActivityOnboardingBinding;
 import com.example.hellodelivery.utils.SessionManager;
@@ -53,7 +54,10 @@ public class OnboardingActivity extends AppCompatActivity {
 
     private void completeOnboarding() {
         sessionManager.setFirstTime(false);
-        startActivity(new Intent(OnboardingActivity.this, LoginActivity.class));
+        // Enterprise UX: After onboarding, go straight to Home (MainActivity) as a Guest
+        Intent intent = new Intent(OnboardingActivity.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
         finish();
     }
 }

@@ -38,11 +38,11 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
     @Override
     public void onBindViewHolder(@NonNull AddressViewHolder holder, int position) {
         AddressEntity address = addressList.get(position);
-        holder.binding.tvAddressTitle.setText(address.getAddressTitle());
-        holder.binding.tvFullAddress.setText(address.getFullAddress());
+        holder.binding.addressLabel.setText(address.getAddressTitle());
+        holder.binding.addressDetails.setText(address.getFullAddress());
 
         holder.itemView.setOnClickListener(v -> listener.onAddressClick(address));
-        holder.binding.btnDeleteAddress.setOnClickListener(v -> listener.onDeleteClick(address));
+        holder.binding.btnEditAddress.setOnClickListener(v -> listener.onDeleteClick(address));
     }
 
     @Override

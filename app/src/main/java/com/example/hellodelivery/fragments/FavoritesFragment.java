@@ -8,13 +8,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
+import com.example.hellodelivery.activities.LoginActivity;
 import com.example.hellodelivery.activities.ProductDetailsActivity;
 import com.example.hellodelivery.adapters.ProductAdapter;
 import com.example.hellodelivery.database.AppDatabase;
 import com.example.hellodelivery.databinding.FragmentFavoritesBinding;
 import com.example.hellodelivery.models.Product;
+import com.example.hellodelivery.utils.SessionManager;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class FavoritesFragment extends Fragment {
 
     private FragmentFavoritesBinding binding;
     private ProductAdapter adapter;
+    private SessionManager sessionManager;
 
     @Nullable
     @Override
@@ -33,12 +35,25 @@ public class FavoritesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        sessionManager = new SessionManager(requireContext());
 
         setupRecyclerView();
-        observeFavorites();
+        
+        if (sessionManager.isLoggedIn()) {
+            binding.loginRequiredState.setVisibility(View.GONE);
+            observeFavorites();
+        } else {
+            showLoginRequired();
+        }
+    }
 
-        binding.btnExploreProducts.setOnClickListener(v -> {
-            // Navigate to Home or Search
+    private void showLoginRequired() {
+        binding.favoritesRecyclerView.setVisibility(View.GONE);
+        binding.emptyFavoritesState.setVisibility(View.GONE);
+        binding.loginRequiredState.setVisibility(View.VISIBLE);
+        
+        binding.btnLoginFavorites.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), LoginActivity.class));
         });
     }
 

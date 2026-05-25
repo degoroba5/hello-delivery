@@ -1,5 +1,6 @@
 package com.example.hellodelivery.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import com.example.hellodelivery.activities.LoginActivity;
 import com.example.hellodelivery.adapters.OrderAdapterEnterprise;
 import com.example.hellodelivery.databinding.FragmentOrdersBinding;
 import com.example.hellodelivery.utils.SessionManager;
@@ -38,7 +40,23 @@ public class OrdersFragment extends Fragment {
         sessionManager = new SessionManager(requireContext());
 
         setupRecyclerView();
-        loadOrders();
+        
+        if (sessionManager.isLoggedIn()) {
+            binding.loginRequiredState.setVisibility(View.GONE);
+            loadOrders();
+        } else {
+            showLoginRequired();
+        }
+    }
+
+    private void showLoginRequired() {
+        binding.ordersRecyclerView.setVisibility(View.GONE);
+        binding.emptyOrdersState.setVisibility(View.GONE);
+        binding.loginRequiredState.setVisibility(View.VISIBLE);
+        
+        binding.btnLoginOrders.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+        });
     }
 
     private void setupRecyclerView() {
@@ -50,7 +68,6 @@ public class OrdersFragment extends Fragment {
 
             @Override
             public void onReorderClick(com.example.hellodelivery.models.Order order) {
-                // Add items to cart and navigate to Cart
                 Toast.makeText(getContext(), "Reordering items...", Toast.LENGTH_SHORT).show();
             }
         });

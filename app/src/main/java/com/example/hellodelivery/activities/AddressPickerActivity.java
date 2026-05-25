@@ -45,7 +45,6 @@ public class AddressPickerActivity extends AppCompatActivity implements OnMapRea
             mapFragment.getMapAsync(this);
         }
 
-        binding.btnBackPicker.setOnClickListener(v -> onBackPressed());
         binding.btnConfirmAddress.setOnClickListener(v -> confirmAddress());
     }
 
@@ -92,11 +91,16 @@ public class AddressPickerActivity extends AppCompatActivity implements OnMapRea
             return;
         }
 
-        String extra = binding.etAddressExtra.getText().toString().trim();
-        String fullAddress = selectedAddressStr;
-        if (!extra.isEmpty()) {
-            fullAddress = extra + ", " + selectedAddressStr;
-        }
+        String street = binding.etStreet.getText().toString().trim();
+        String floor = binding.etFloor.getText().toString().trim();
+        String apartment = binding.etApartment.getText().toString().trim();
+        
+        StringBuilder fullAddressBuilder = new StringBuilder(selectedAddressStr);
+        if (!street.isEmpty()) fullAddressBuilder.insert(0, street + ", ");
+        if (!floor.isEmpty()) fullAddressBuilder.append(", Floor: ").append(floor);
+        if (!apartment.isEmpty()) fullAddressBuilder.append(", Apt: ").append(apartment);
+        
+        String fullAddress = fullAddressBuilder.toString();
 
         Intent resultIntent = new Intent();
         resultIntent.putExtra("address", fullAddress);

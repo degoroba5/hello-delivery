@@ -13,8 +13,9 @@ public class Store {
     private double deliveryFee;
     private String address;
     private boolean isOpen;
+    private String category; // Added for filtering
 
-    public Store(String id, String name, String description, String imageUrl, float rating, String deliveryTime, double deliveryFee, String address, boolean isOpen) {
+    public Store(String id, String name, String description, String imageUrl, float rating, String deliveryTime, double deliveryFee, String address, boolean isOpen, String category) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -24,6 +25,7 @@ public class Store {
         this.deliveryFee = deliveryFee;
         this.address = address;
         this.isOpen = isOpen;
+        this.category = category;
     }
 
     public String getId() { return id; }
@@ -35,4 +37,5 @@ public class Store {
     public double getDeliveryFee() { return deliveryFee; }
     public String getAddress() { return address; }
     public boolean isOpen() { return isOpen; }
+    public String getCategory() { return category; }
 }

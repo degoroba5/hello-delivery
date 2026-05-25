@@ -76,6 +76,9 @@ dependencies {
     // Real-time
     implementation(libs.socket.io)
 
+    // UI Effects
+    implementation(libs.shimmer)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

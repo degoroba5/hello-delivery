@@ -3,6 +3,7 @@ package com.example.hellodelivery.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.hellodelivery.MainActivity;
 import com.example.hellodelivery.R;
@@ -17,14 +18,19 @@ public class SplashActivity extends AppCompatActivity {
 
         SessionManager sessionManager = new SessionManager(this);
 
-        new Handler().postDelayed(() -> {
+        // Enterprise UX Flow: Ensure we use the Main Looper for the delay
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            Intent intent;
             if (sessionManager.isFirstTime()) {
-                startActivity(new Intent(SplashActivity.this, OnboardingActivity.class));
-            } else if (sessionManager.isLoggedIn()) {
-                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                intent = new Intent(SplashActivity.this, OnboardingActivity.class);
             } else {
-                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                // DIRECT TO HOME: Users start as guests (Like Uber Eats/DoorDash)
+                intent = new Intent(SplashActivity.this, MainActivity.class);
             }
+            
+            // Clear stack to prevent back-button returning to Splash
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
             finish();
         }, 2000);
     }

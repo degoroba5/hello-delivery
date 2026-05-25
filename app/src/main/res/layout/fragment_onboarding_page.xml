@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -8,19 +9,20 @@
 
     <ImageView
         android:id="@+id/iv_onboarding"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:scaleType="fitCenter" />
+        android:scaleType="centerInside"
+        android:src="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Title"
+        android:text="Fast Delivery"
         android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textColor="@color/text_primary"
+        android:textSize="28sp"
         android:textStyle="bold" />
 
     <TextView
@@ -28,9 +30,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Description goes here."
+        android:lineSpacingExtra="4dp"
+        android:text="Get your favorite food delivered to your doorstep in minutes with our lightning fast service."
         android:textAlignment="center"
-        android:textColor="@color/gray"
+        android:textColor="@color/text_secondary"
         android:textSize="16sp" />
 
 </LinearLayout>

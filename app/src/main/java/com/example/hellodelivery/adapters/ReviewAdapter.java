@@ -9,6 +9,7 @@ import com.example.hellodelivery.R;
 import com.example.hellodelivery.databinding.ItemReviewBinding;
 import com.example.hellodelivery.models.Review;
 import java.util.List;
+import java.util.Locale;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder> {
 
@@ -35,13 +36,15 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         Review review = reviewList.get(position);
         holder.binding.userName.setText(review.getUserName());
         holder.binding.reviewDate.setText(review.getDate());
-        holder.binding.reviewComment.setText(review.getComment());
-        holder.binding.reviewRating.setRating(review.getRating());
+        // Fix: Changed reviewComment to reviewContent to match the ID in item_review.xml
+        holder.binding.reviewContent.setText(review.getComment());
+        // Fix: Changed reviewRating.setRating to ratingText.setText to match the layout
+        holder.binding.ratingText.setText(String.format(Locale.getDefault(), "%.1f", review.getRating()));
 
         Glide.with(holder.itemView.getContext())
                 .load(review.getUserImageUrl())
                 .placeholder(R.mipmap.ic_launcher_round)
-                .into(holder.binding.userImage);
+                .into(holder.binding.userAvatar); // Fix: Changed userImage to userAvatar
     }
 
     @Override

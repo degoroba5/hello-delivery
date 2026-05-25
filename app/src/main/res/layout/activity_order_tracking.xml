@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
+    <!-- Map Placeholder -->
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -15,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:context=".activities.OrderTrackingActivity" />
 
+    <!-- Back Button Overlay -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_back"
         style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
@@ -26,6 +28,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Status Card -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/status_card"
         android:layout_width="match_parent"
@@ -48,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="On the way"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -93,14 +96,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Michael Smith"
-                        android:textColor="@color/black"
+                        android:textColor="@color/text_primary"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Your Delivery Partner"
-                        android:textColor="@color/gray"
+                        android:textColor="@color/text_secondary"
                         android:textSize="12sp" />
                 </LinearLayout>
 
@@ -129,17 +132,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Delivery Progress"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 android:textStyle="bold" />
 
-            <!-- A simple step progress would go here -->
-            <TextView
+            <!-- Progress Timeline Placeholder -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Order Confirmed -> Preparing -> On the way -> Delivered"
-                android:textColor="@color/primary"
-                android:textSize="12sp" />
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+                <!-- Implementation of a custom timeline would go here -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Order Confirmed • Preparing • On the way"
+                    android:textColor="@color/success"
+                    android:textSize="12sp" />
+            </LinearLayout>
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

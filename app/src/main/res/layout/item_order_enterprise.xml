@@ -19,36 +19,61 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/order_id"
-                android:layout_width="wrap_content"
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/order_store_image"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/featured_placeholder"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Card.Medium" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Order #12345"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@id/order_store_image"
+                android:layout_toStartOf="@id/order_status"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/order_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/order_store_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Burgers &amp; Co."
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/order_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="24 Oct, 12:30 PM"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/order_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:background="@drawable/bg_toggle"
+                android:background="@drawable/bg_badge_success"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="4dp"
                 android:text="Delivered"
-                android:textColor="@color/green_success"
-                android:textSize="12sp"
+                android:textColor="@color/success"
+                android:textSize="10sp"
                 android:textStyle="bold" />
         </RelativeLayout>
-
-        <TextView
-            android:id="@+id/order_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="24 Oct 2023, 14:30"
-            android:textColor="@color/gray"
-            android:textSize="12sp" />
 
         <View
             android:layout_width="match_parent"
@@ -68,30 +93,25 @@
             android:layout_marginTop="12dp">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Total Amount"
-                android:textColor="@color/black" />
-
-            <TextView
                 android:id="@+id/order_total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:text="$45.00"
-                android:textColor="@color/primary"
+                android:layout_centerVertical="true"
+                android:text="$24.50"
+                android:textColor="@color/text_primary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-        </RelativeLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_reorder"
-            style="@style/Widget.Material3.Button.TonalButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Reorder"
-            app:cornerRadius="8dp" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_reorder"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="Reorder"
+                android:textSize="12sp"
+                app:cornerRadius="8dp" />
+        </RelativeLayout>
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
